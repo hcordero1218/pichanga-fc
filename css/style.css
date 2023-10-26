@@ -286,10 +286,13 @@ main {
     text-align: center;
   }
   .footer_a_item {
-    width: 70vw;
+    width: 40vw;
+  }
+  .footer_div_item {
+    width: 40vw;
   }
   .logo {
-    max-width: 80%; 
+    max-width: 70%; 
   }
 
   
