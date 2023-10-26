@@ -60,7 +60,10 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
 }
-
+.logo {
+  max-width: 100%; /* La imagen no será más ancha que su contenedor */
+  height: auto; /* Mantendrá la relación de aspecto de la imagen */
+}
 .flex_column_center {
   display: flex;
   flex-direction: column;
@@ -279,8 +282,15 @@ main {
   }
   
   .header_h_item {
-    width: 92vw;
+    width: 72vw;
     text-align: center;
   }
+  .footer_a_item {
+    width: 70vw;
+  }
+  .logo {
+    max-width: 80%; 
+  }
+
   
 }
