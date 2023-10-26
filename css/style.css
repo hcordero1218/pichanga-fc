@@ -61,7 +61,7 @@ body {
   flex-wrap: wrap;
 }
 .logo {
-  max-width: 100%; /* La imagen no será más ancha que su contenedor */
+  max-width: 70%; /* La imagen no será más ancha que su contenedor */
   height: auto; /* Mantendrá la relación de aspecto de la imagen */
 }
 .flex_column_center {
