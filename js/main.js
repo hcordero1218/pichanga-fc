@@ -13,3 +13,21 @@ targets.forEach(element => {
     target.style.display= 'flex'
   })
 })
+
+const popup = document.getElementById('popup');
+const popupBtn = document.getElementById('popupBtn');
+const closePopup = document.getElementById('closePopup');
+
+popupBtn.addEventListener('click', () => {
+    popup.style.display = 'block';
+});
+
+closePopup.addEventListener('click', () => {
+    popup.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target == popup) {
+        popup.style.display = 'none';
+    }
+});
