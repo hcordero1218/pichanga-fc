@@ -1,298 +1,427 @@
-/* From the :root element you can easily change the colors of the design, its size and so on. */
+
+* { box-sizing: border-box; }
+html, body, h1, h2, h3, p { margin: 0; }
+body { min-width: 320px; }
+
 :root {
-
-  /* You can change the font family in the whole design here. (You need to add the font family to the codes.) */
-  --font_family: 'Inter', sans-serif;
-
-  /* You can change the font size here, is proportional to all texts. */
-  --font_size: 16px;
-
-  /* You can change the background color by typing the color code. (If you do not enter a background-image image, the background-color will be active.) */
-  --background_color: #000;
-  --background_image: url("../img/wallpaper.png");
-
-  /* You can change the frame thickness and color of the picture by typing the number of pixels and the color code. */
-  --image_border_color: #1f232e;
-  --image_border_px: 3px;
-
-  /* You can change the width and size of the picture by typing the number of pixels. */
-  --image_width: 140px;
-  --image_height: 140px;
-
-  /* You can change the colors of the title and description section by typing the color codes. */
-  --title_color: #fff;
-  --description_color: #fff;
-
-  /* You can change the colors of social media icons by changing the color code. */
-  --svg_color: #fff;
-
-  /* You can change the background, text color and active color of the menu by changing the color codes. */
-  --menu_background_color: #1d1e24;
-  --menu_text_color: #fff;
-  --menu_active_text_color: #c80000;
-
-  /* You can change the button's background, text color and active color by changing the color codes. */
-  --button_background_color: #1d1e24;
-  --button_background_color2: #c80000;
-  --button_text_color: #fff;
-  --button_text_hover_color: #c80000;
-
-  /* You can change the background, text color and active color of the text field by changing the color codes. */
-  --textarea_background_color: #1d1e24;
-  --textarea_text_color: #fff;
-  --textarea_link_text_color: #c80000;
-
-  /* You can change the background, text color and active color of the footer area by changing the color codes. */
-  --footer_background_color: #1d1e24;
-  --footer_text_color: #fff;
-  --footer_link_text_color: #ffffff;
+  --bg: #0b0b0d;
+  --surface: #141417;
+  --text: #f5f5f5;
+  --muted: #a8a8b3;
+  --red: #d71920;
+  --line: rgba(255,255,255,.10);
+  --container: 1480px;
+  --radius: 26px;
 }
 
-/* Basic Codes */
-
+html { scroll-behavior: smooth; }
 body {
-  font: var(--font_size) var(--font_family);
-  font-weight: 400;
-  line-height: 1.5;
-  background: var(--background_color) var(--background_image) no-repeat center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
 }
-.logo {
-  max-width: 70%; /* La imagen no será más ancha que su contenedor */
-  height: auto; /* Mantendrá la relación de aspecto de la imagen */
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+.container { width: min(calc(100% - 32px), var(--container)); margin: 0 auto; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(11,11,13,.86);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
 }
-.flex_column_center {
+.nav-wrap {
+  min-height: 78px;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+.brand img { width: 46px; height: 46px; object-fit: contain; }
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  color: #d7d7db;
+  font-size: .95rem;
+}
+.main-nav a:hover { color: #fff; }
+.nav-cta {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--red);
+  color: #fff !important;
+}
+
+.hero {
+  overflow: hidden;
+  padding: 92px 0 72px;
+  background: radial-gradient(circle at 15% 10%, rgba(215,25,32,.23), transparent 36%), var(--bg);
+}
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 60px;
   align-items: center;
 }
-
-.flex_row_center {
+.eyebrow {
+  margin: 0 0 14px;
+  color: #ff666b;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .78rem;
+  font-weight: 800;
+}
+.hero h1 {
+  max-width: 760px;
+  font-size: clamp(3.1rem, 6.6vw, 6.6rem);
+  line-height: .94;
+  letter-spacing: -.065em;
+}
+.hero-text {
+  max-width: 640px;
+  margin: 28px 0 0;
+  color: #c7c7cf;
+  font-size: 1.08rem;
+}
+.hero-actions {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  gap: 14px;
+  margin-top: 34px;
 }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 750;
+  transition: transform .18s ease, background .18s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--red); color: #fff; }
+.btn-secondary { border: 1px solid var(--line); background: rgba(255,255,255,.05); }
 
-.flex_no_wrap_row_center {
+.hero-visual {
+  position: relative;
+  min-height: 510px;
+  border-radius: 34px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(145deg, rgba(215,25,32,.15), transparent 45%),
+    radial-gradient(circle at 65% 30%, rgba(255,255,255,.08), transparent 30%),
+    #111114;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
-
-/* Logo, Title and Description Codes */
-
-.header_img {
-  padding-top: 1em;
+.hero-visual::before,
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 1px;
+  background: rgba(255,255,255,.08);
 }
-
-.header_img img {
-  height: var(--image_height);
-  width: var(--image_width);
-  border: var(--image_border_px) solid var(--image_border_color);
+.hero-visual::before { transform: rotate(-36deg); }
+.hero-visual::after { transform: rotate(36deg); }
+.hero-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
-  margin-bottom: 0.5em;
+  background: rgba(215,25,32,.13);
+  filter: blur(18px);
+}
+.hero-visual img {
+  position: relative;
+  z-index: 2;
+  width: min(58%, 300px);
+  filter: drop-shadow(0 22px 30px rgba(0,0,0,.35));
+}
+.hero-visual span {
+  position: absolute;
+  left: 28px;
+  bottom: 24px;
+  z-index: 2;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  color: #b9b9c1;
 }
 
-.header_text h1 {
-  color: var(--title_color);
-  font-size: 2em;
+.section { padding: 94px 0; }
+.section-heading {
+  max-width: 860px;
+  margin-bottom: 36px;
+}
+.section-heading.compact { margin-bottom: 32px; }
+.section h2, .join h2 {
+  font-size: clamp(2.1rem, 4vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -.045em;
+}
+.section-heading > p:last-child {
+  color: var(--muted);
+  max-width: 720px;
+  margin: 18px 0 0;
 }
 
-.header_text h2 {
-  color: var(--description_color);
-  font-size: 1.5em;
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: stretch;
 }
-
-/* Social Media Icons Codes */
-
-.header_svg_list {
-  padding-top: 1em;
+.team-card {
+  min-height: 365px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
 }
-
-.header_svg_item {
-  width: 2.1em;
-  height: 2.1em;
-  cursor: pointer;
+.team-card.featured {
+  background: linear-gradient(180deg, rgba(215,25,32,.18), rgba(255,255,255,.03));
 }
-
-.header_svg_item + .header_svg_item {
-  margin-left: 1em;
+.team-card.flinta {
+  background: linear-gradient(180deg, rgba(215,25,32,.08), rgba(255,255,255,.025));
 }
-
-.header_svg_item svg {
-  fill: var(--svg_color);
-}
-
-/* Menu Codes */
-
-#header_nav_menu_item_1 {
-  color: var(--menu_active_text_color);
-}
-
-#header_nav_menu_item_2,
-#header_nav_menu_item_3 {
-  color: var(--menu_text_color);
-}
-
-
-.header_nav_menu_list {
-  padding-top: 1em;
-  margin-left: 1em;
-  margin-right: 1em;
-}
-
-.header_nav_menu_item {
-  color: var(--menu_text_color);
-  background-color: var(--menu_background_color);
-  text-align: center;
-  list-style-type: none;
-  cursor: pointer;
-  padding: 0.5em;
-  border-radius: 0.3em;
-  cursor: pointer;
-  transition: 0.10s ease;
-  font-size: 1.1em;
-}
-
-.header_nav_menu_item + .header_nav_menu_item {
-  margin-left: 0.4em;
-}
-
-/* Menu Container Codes */
-
-main {
-  margin-bottom: auto;
-}
-
-#main_section_container_2, #main_section_container_3 {
- display: none;
-}
-
-.main_a_item {
-  margin-top: 1em;
-  text-decoration: none;
-}
-
-.main_text_item {
+.team-topline {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: var(--button_text_color);
-  background-color: var(--button_background_color);
-  width: 41em;
-  margin-top: 1em;
-  padding: 0.8em;
-  border-radius: 0.3em;
-  min-height: 3.7em;
-  text-align: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.team-tag {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: #e0e0e4;
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+.team-number {
+  color: #f0d8cc;
+  font-size: .9rem;
+  font-weight: 700;
+  min-width: 22px;
+  text-align: right;
+}
+.team-card h3 {
+  margin: 28px 0 12px;
+  font-size: clamp(1.55rem, 2vw, 2rem);
+  line-height: 1.06;
+  letter-spacing: -.04em;
+}
+.team-description {
+  min-height: 60px;
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.55;
+}
+.league-box {
+  margin-top: 18px;
+  padding: 16px 14px;
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 14px;
+  background: rgba(255,255,255,.022);
+}
+.league-box span {
+  display: block;
+  color: #ff666b;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: .68rem;
+  font-weight: 800;
+}
+.league-box strong {
+  display: block;
+  margin-top: 6px;
+  font-size: .98rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.team-links {
+  margin-top: auto;
+  padding-top: 18px;
+  display: grid;
+  gap: 10px;
+}
+.team-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: fit-content;
+  color: #fff;
+  font-size: .92rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.team-links a:hover { color: #ff666b; }
+
+.link-main::after {
+  content: "→";
+  font-size: 1rem;
 }
 
-.main_button_item {
-  color: var(--button_text_color);
-  background-color: var(--button_background_color);
-  width: 41em;
-  border-radius: 1em;
-  min-height: 3.7em;
-  text-align: center;
-  cursor: pointer;
+.link-instagram::before,
+.social-label::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='5' ry='5'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Ccircle cx='17.5' cy='6.5' r='1' fill='white' stroke='white'/%3E%3C/svg%3E");
+}
+.social-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.main_small_button_list {
-  display: flex;
-  flex-direction: row;
+.section-dark {
+  background: var(--surface);
+  border-block: 1px solid var(--line);
+}
+.split-layout {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 60px;
+  align-items: start;
+}
+.club-copy {
+  color: #c9c9d0;
+  font-size: 1.08rem;
+}
+.text-link {
+  display: inline-block;
+  margin-top: 18px;
+  color: #fff;
+  font-weight: 800;
+}
+.text-link:hover { color: #ff666b; }
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.social-card {
+  padding: 26px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.social-card.primary-social {
+  background: linear-gradient(180deg, rgba(215,25,32,.12), var(--surface));
+}
+.social-card span {
+  display: block;
+  color: #ff666b;
+  font-size: .8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.social-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.15rem;
 }
 
-.main_small_a_item {
-  margin-top: 1em;
-  text-decoration: none;
+.join {
+  padding: 72px 0;
+  background: var(--red);
+}
+.join-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+.join .eyebrow { color: rgba(255,255,255,.72); }
+.join p {
+  max-width: 660px;
+  margin: 14px 0 0;
+}
+.btn-light {
+  background: #fff;
+  color: #111;
+  white-space: nowrap;
 }
 
-.main_small_a_item + .main_small_a_item {
-  margin-left: 10px;
+.site-footer {
+  padding: 34px 0;
+  background: #070708;
+  border-top: 1px solid var(--line);
 }
-
-.main_small_button_item:hover,
-.main_button_item:hover {
-  color: var(--button_text_hover_color);
-  transform: scale(1.02);
-  transition: 0.10s ease;
-}
-
-.main_small_button_item {
-  color: var(--button_text_color);
-  background-color: var(--button_background_color);
-  width: calc(41em / 2 - 5px);
-  border-radius: 1em;
-  min-height: 3.7em;
-  text-align: center;
-  cursor: pointer;
-}
-.main_small_button_item {
+.footer-inner {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 24px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+.footer-inner strong { color: #fff; }
+
+@media (max-width: 1100px) {
+  .container { width: min(calc(100% - 18px), var(--container)); }
+  .team-grid { gap: 8px; }
+  .team-card { padding: 16px; min-height: 345px; }
+  .team-card h3 { font-size: 1.55rem; }
+  .team-description { font-size: .86rem; min-height: 54px; }
+  .league-box strong { font-size: .88rem; }
+  .team-links a { font-size: .85rem; }
+  .team-tag { font-size: .68rem; padding: 6px 8px; }
 }
 
-
-.button-color {
-  color: var(--button_text_color);
-  background-color: var(--button_background_color2);
-  transition: color 0.3s; /* Agregar una transición suave de color */
+@media (max-width: 860px) {
+  .main-nav a:not(.nav-cta) { display: none; }
+  .hero { padding-top: 64px; }
+  .hero-content, .split-layout, .join-inner, .social-grid { grid-template-columns: 1fr; }
+  .hero-visual { min-height: 400px; }
+  .team-grid { grid-template-columns: 1fr; gap: 16px; }
+  .team-card { min-height: 330px; padding: 20px; }
 }
 
-.button-color:hover {
-  color: black; /* Cambiar el color del texto a negro al pasar el mouse sobre el botón */
-}
-/* Footer Codes */
-
-.footer_div_item {
-  color: var(--footer_text_color);
-  background: var(--footer_background_color);
-  padding: 1em;
-  margin-top: 1.5em;
-}
-
-.footer_a_item {
-  color: var(--footer_link_text_color);
-  text-decoration: none;
-}
-
-
-
-/* Responsive Codes */
-
-@media (max-width: 768px) { 
-  .main_text_item {
-    width: 92vw;
-  }
-
-  .main_small_button_item {
-    width: calc(92vw / 2 - 5px);;
-  }
-
-  .main_button_item {
-    width: 92vw;
-  }
-  
-  .header_h_item {
-    width: 72vw;
-    text-align: center;
-  }
-  .footer_a_item {
-    width: 40vw;
-  }
-  .logo {
-    max-width: 70%; 
-  }
-
-  
+@media (max-width: 560px) {
+  .container { width: min(calc(100% - 24px), var(--container)); }
+  .nav-wrap { min-height: 68px; }
+  .brand img { width: 40px; height: 40px; }
+  .brand span { font-size: .96rem; }
+  .nav-cta { padding: 9px 13px; }
+  .hero { padding: 48px 0 54px; }
+  .hero h1 { font-size: clamp(2.75rem, 15vw, 4.25rem); }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .btn { width: 100%; }
+  .section { padding: 68px 0; }
+  .hero-visual { min-height: 320px; }
+  .hero-visual img { width: min(62%, 220px); }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
 }
